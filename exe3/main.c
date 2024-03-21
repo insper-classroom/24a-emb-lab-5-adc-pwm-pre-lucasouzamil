@@ -42,7 +42,7 @@ void process_task(void *p) {
             }
 
             media = sum / 5;
-            printf("%d", media);
+            printf("%d\n", media);
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
