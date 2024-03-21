@@ -25,24 +25,16 @@ void data_task(void *p) {
 
 void process_task(void *p) {
     int data = 0;
-    int data_list[5] = {};
-    int indice = 0;
-    int sum, media;
+    int values[5] = {0, 0, 0, 0, 0};
+    int i = 0;
 
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
             // implementar filtro aqui!
-            data_list[indice] = data;
-            data += 1;
-            data = data >= 5 ? 0 : data;
-            
-            sum = 0;
-            for (int i = 0; i < 5; i ++) {
-                sum += data_list[i];
-            }
 
-            media = sum / 5;
-            printf("%d\n", media);
+            values[(i++)%5] = data;
+            int mean = (values[0] + values[1] + values[2] + values[3] + values[4])/5;
+            printf("%d\n", mean);
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
